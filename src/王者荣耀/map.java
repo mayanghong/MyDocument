@@ -1,78 +1,100 @@
-package ������ҫ;
+package 王者荣耀;
 import java.util.Scanner;
-import ������ҫ.role;
+import 王者荣耀.role;
+import 角色.ADC;
 public class map{	
-	int m=30;
-	int n=30;
+	int m=20;
+	int n=40;
 	String [][]field=new String[m][n];
 	public void getstring()
 	{
-	for(int i=0;i<30;i++)
-		for(int j=0;j<30;j++)
-			field[i][j]="0";
-	field[5][5]="#";
-	field[5][25]="#";
-	field[25][5]="#";
-	field[25][25]="#";	
+	for(int i=0;i<20;i++)
+		for(int j=0;j<40;j++)
+			field[i][j]="😂";
+	for(int i=5;i<=7;i++)
+		for(int j=5;j<=10;j++)
+			field[i][j]="❤";
+	for(int i=5;i<=7;i++)
+		for(int j=30;j<=35;j++)
+			field[i][j]="❤";
+	for(int i=13;i<=15;i++)
+		for(int j=5;j<=10;j++)
+			field[i][j]="❤";
+	for(int i=13;i<=15;i++)
+		for(int j=30;j<=35;j++)
+			field[i][j]="❤";
 	}
-	public void display()
+	public void displaymap()//打印战场
 	{
-		for(int i=0;i<30;i++)
+		for(int i=0;i<20;i++)
 		{
-			for(int j=0;j<30;j++)
+			for(int j=0;j<40;j++)
 				System.out.print(field[i][j]);
 			System.out.println();
 		}
 		System.out.println();
 	}
-	public void rolemove(String name,String a,int x,int y)//��ɫ����ָ�λ��
+	public void displayrole(role r)//打印角色属性
 	{
-		if(a=="up")
+		System.out.println("角色名："+r.name);
+		System.out.println("经验值："+r.Exp);
+		System.out.println("HP值："+r.HP);
+		System.out.println("HP值："+r.HP);
+		System.out.println("角色位置：("+r.x+","+r.y+")");
+	}
+	public void rolemove(role r)//角色名，指令，位置
+	{
+		if(r.direction=="up")
 		{
-			if(x>0)
+			if(r.x>0&&field[r.x-1][r.y]!="❤")
 			{
-				field[x-1][y]=name;
-				field[x][y]="0";
+				field[r.x-1][r.y]=r.name;
+				field[r.x][r.y]="😂";
+				r.x--;
 			}
 		}
-		if(a=="down")
+		if(r.direction=="down")
 		{
-			if(x<29)
+			if(r.x<29&&field[r.x+1][r.y]!="❤")
 			{
-				field[x+1][y]=name;
-				field[x][y]="0";
+				field[r.x+1][r.y]=r.name;
+				field[r.x][r.y]="😂";
+				r.x++;
 			}
 		}
-		if(a=="left")
+		if(r.direction=="left")
 		{
-			if(y>0)
+			if(r.y>0&&field[r.x][r.y-1]!="❤")
 			{
-				field[x][y-1]=name;
-				field[x][y]="0";
+				field[r.x][r.y-1]=r.name;
+				field[r.x][r.y]="😂";
+				r.y--;
 			}
 		}
-		if(a=="right")
+		if(r.direction=="right")
 		{
-			if(y<29)
+			if(r.y<29&&field[r.x][r.y+1]!="❤")
 			{
-				field[x][y+1]=name;
-				field[x][y]="0";
+				field[r.x][r.y+1]=r.name;
+				field[r.x][r.y]="😂";
+				r.y++;
 			}
 		}
 			
 	}
 	public static void main(String[] args) {
-		role s=new role();
-		//s.role(name, x, y, HP, MP, Exp, direction);//��
+		role s=new ADC();
+		//s.role(name, x, y, HP, MP, Exp, direction);//改
 		s.x=10;
 		s.y=10;
 		s.direction="up";
-		s.name="A";
+		s.name="🐷";
 		map p=new map();
 		p.getstring();
-		p.display();
-		p.rolemove(s.name,s.direction, s.x, s.y);
-		p.display();
+		p.displaymap();
+		p.rolemove(s);
+		p.displaymap();
+		p.displayrole(s);
 }
 }
 	
