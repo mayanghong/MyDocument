@@ -11,8 +11,5 @@ import ÍõÕßÈÙÒ«.role;
 	firstAttack = p1;
 	lastAttack = p2;
 }*/
-public void battledisplay()
-{
-	
-}
+
 
